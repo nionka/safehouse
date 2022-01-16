@@ -1,0 +1,253 @@
+@import 'reset';
+
+$mainFontColor: #FFFFFF;
+$accentColor: #FF7A00;
+$mainBg: #0F0F0F;
+$bg: #1C1D1E;
+$priceBg: #3D3D3D;
+
+@mixin button () {
+  font-weight: 500;
+  color: $mainFontColor;
+  font-size: 16px;
+  background-color: $bg;
+  border: 3px solid $accentColor;
+  border-radius: 10px;
+  transition: all 0.3s;
+  &:hover {
+    background-color: $mainBg;
+  }
+}
+
+@mixin arrow() {
+  width: 29px;
+  height: 58px;
+  cursor: pointer; 
+}
+
+@mixin bg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;  
+}
+
+@mixin title-line() {
+  content: "";
+  display: block;
+  width: 203px;
+  height: 3px;
+  background-color: $accentColor;
+  position: absolute;
+  top: 33px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: $mainFontColor;
+  background-color: $mainBg;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px + 15px + 15px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  font-weight: 500;
+
+  .logo {
+    width: 124px;
+  }
+  .logo__img {
+    width: 100%;
+  }
+  .nav {
+    flex: 1 1 auto;
+
+    &__list {
+      display: flex;
+    }
+    &__item {
+      margin-left: 69px / 990px * 100%;
+      transition: all 0.3s;
+    }
+
+    &__item:hover {
+      color: $accentColor;
+    }
+  }
+  .callback {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    &__btn {
+      margin-top: 10px;
+      background-color: transparent;
+      color: $accentColor;
+      font: inherit;
+      transition: color 0.3s;
+    }
+
+    &__btn:hover {
+      color: $mainFontColor;
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0 130px;
+}
+
+.title-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.title {
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 70px;
+
+  &__text {
+    font-size: 22px;
+    font-weight: 400;
+  }
+}
+
+.btn-advice {
+  @include button ();
+  width: 300px;
+  padding: 17px 0;
+}
+
+.slider {
+  width: 570px;
+  height: 440px;
+  flex: 0 0 auto;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 5000px;
+    height: 520px;
+    border: 10px solid $accentColor;
+    position: absolute;
+    top: (440px - 520px) / 2;
+    left: 90px;
+    z-index: -2;
+  }
+  &__list {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  &__item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &--active {
+    opacity: 1;
+  }
+
+  .arrow {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    top: -60%;
+
+    &__left {
+      @include arrow();
+      background-image: url("../images/arrow-left.png");
+    }
+
+    &__right {
+      @include arrow();
+      background-image: url("../images/arrow-right.png");
+    }
+  }
+
+  .dots {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: -90px;
+
+    &__item {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background-color: $mainFontColor;
+      margin-right: 15px;
+    }
+
+    &__item:last-child {
+      margin-right: 0;
+    }
+
+    &--active {
+      background-color: $accentColor;
+    }
+  }
+}
+
+.block--title {
+  &::after {
+    @include title-line ();
+    left: 0;
+  }
+
+  &::before {
+    @include title-line ();
+    right: 0;
+  }
+}
+
+.work {
+  @include bg ();
+  background-image: url("../images/work-bg.jpg");
+  position: relative;
+
+  &::after {
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $mainBg;
+    opacity: 0.85;
+    position: absolute;
+  }
+
+  .container {
+    position: relative;
+    z-index: 50;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  &__title {
+    font-size: 30px;
+    text-align: center;
+    position: relative;  
+  }
+}
